@@ -6,7 +6,7 @@
  */
 
 #include "inputs.h"
-
+#include <stdio.h>
 
  int pedirNumeroEntero(int* pResultado, char mensaje[], char mensajeError[], int minimo,int maximo,int reintentos)
 {

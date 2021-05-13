@@ -7,7 +7,7 @@
  Description : Hello World in C, Ansi-style
  ============================================================================
  */
-
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "inputs.h"
@@ -41,7 +41,7 @@ typedef struct
 
 
 
-
+int CargarTrabajos(eTrabajo [] , int, eServicio [], int);
 int BuscarLibre(eTrabajo[], int);
 void InicializadorTrabajos(eTrabajo [] ,int);
 void MostrarServicios(eServicio[],int);
@@ -119,6 +119,9 @@ int main(void)
 		                break;
 
 		            case 5:
+		            	printf("\n\t Lista de servicios disponibles");
+		            	printf("\n\t Codigo\t Descripcion \t precio");
+		            	MostrarServicios(servicios,4);
 
 
 		                break;
@@ -152,6 +155,7 @@ eTrabajo ingreso(eServicio listaServicios[],int tamS)
      eTrabajo unTrabajo;
      int rodado;
      int retRodado;
+     int codServicio;
 
 
     printf("\n\t Carga de trabajo\n\n ");
@@ -164,9 +168,24 @@ eTrabajo ingreso(eServicio listaServicios[],int tamS)
     {
     	unTrabajo.rodadoBicicleta=rodado;
     }
-
-    printf("\n\t ingrese servicio a realizar: ");
+    else
+    {
+    	printf("\n por favor revise y vuelva luego\n");
+    }
+    printf("\n\t ingrese servicio a realizar:\n ");
     MostrarServicios( listaServicios, 4);
+    scanf("%d",&codServicio);
+    if(codServicio==listaServicios->id)
+    {
+    	unTrabajo.idServicio=codServicio;
+    }
+    else
+    {
+    	printf("reintente");
+
+    }
+
+
 
     printf("\n\t ingrese fecha: ");
     scanf("%d",&unTrabajo.fecha);
@@ -186,8 +205,8 @@ void MostrarServicios(eServicio listaServicios[],int tamS)
 
     for(i=0;i<tamS;i++)
     {
-        printf("\n\t%d %s %f \n",listaServicios[i].id,listaServicios[i].descripcion,listaServicios[i].precio);
-        printf("\t_________________________________\n");
+        printf("\n\t%d \t%s \t%.2f \n",listaServicios[i].id,listaServicios[i].descripcion,listaServicios[i].precio);
+        printf("\t______________________________\n");
     }
 }
 
